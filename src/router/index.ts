@@ -4,7 +4,7 @@ import type { RouteRecordRaw, Router } from "vue-router";
 const routes: RouteRecordRaw[] = [
   {
     path: "/",
-    component: () => import("@/main")
+    component: () => import("@/App.vue")
   }
 ];
 const router: Router = createRouter({
