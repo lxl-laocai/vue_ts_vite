@@ -30,10 +30,10 @@ export default defineConfig({
     sourcemap: true, // 生成 sourcemap 文件映射 定位错误查看源代码等
     rollupOptions: {
       output: {
+        name:"build",
         entryFileNames: "js/[name]-[hash]-[format].js",
         chunkFileNames: "js/[name]-[hash]-[format].js",
         assetFileNames(chunkInfo: PreRenderedAsset): string {
-          console.log(chunkInfo, "**********");
           let suffix = chunkInfo.name.split(".").pop().toLowerCase();
           if (["jpg","png","gif","jpeg","webp"].includes(suffix)){
             return "img/[name]-[hash].[ext]";
@@ -43,6 +43,9 @@ export default defineConfig({
       }
     }
   },
+  css:{
+    devSourcemap:true // css sourcemap
+  },
   plugins: [
     vue(),
     AutoImport({
@@ -50,12 +53,12 @@ export default defineConfig({
     }),
     Components({
       resolvers: [ElementPlusResolver()]
-    })
+    }),
     // 开启gzip压缩
-    // viteCompression({
-    //   deleteOriginFile: true, // 删除源文件
-    //   filter: /\.(js|ts|cjs|mjs|json|css)$/i // 过滤需要 gzip 的文件
-    // })
+    viteCompression({
+      deleteOriginFile: false, // 删除源文件
+      filter: /\.(js|ts|cjs|mjs|json|css)$/i // 过滤需要 gzip 的文件
+    })
   ],
   resolve: {
     alias: [

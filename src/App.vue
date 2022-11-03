@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 let arr: any = [1, 2, 3, 4, 5, 6, 7];
-console.log(arr);
+console.log(arr,'*-*-*-');
 </script>
 
 <template>
@@ -11,6 +11,9 @@ console.log(arr);
   <h1 class="text-3xl font-bold underline">
     Hello world!
   </h1>
+  <router-link to="/hello">
+    hello
+  </router-link>
 </template>
 <style scoped lang="scss">
 img{
