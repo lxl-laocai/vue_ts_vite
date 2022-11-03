@@ -15,5 +15,8 @@ const router: Router = createRouter({
   routes,
   history: createWebHashHistory()
 });
-
+router.beforeEach((to,from) => {
+  // console.log(to,from);
+  return true
+})
 export default router;

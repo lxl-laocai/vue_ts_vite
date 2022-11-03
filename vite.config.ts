@@ -18,7 +18,7 @@ export default defineConfig({
     https: false
   },
   build: {
-    // outDir:"./",
+    outDir:"./build", // 设置打包文件夹名称
     minify: "terser", // 指定混淆器  terser需要安装包
     terserOptions: { // 传递给 Terser 的选项
       compress: { // 打包删除 console debugger
@@ -30,7 +30,7 @@ export default defineConfig({
     sourcemap: true, // 生成 sourcemap 文件映射 定位错误查看源代码等
     rollupOptions: {
       output: {
-        name:"build",
+        // dir:"build",
         entryFileNames: "js/[name]-[hash]-[format].js",
         chunkFileNames: "js/[name]-[hash]-[format].js",
         assetFileNames(chunkInfo: PreRenderedAsset): string {

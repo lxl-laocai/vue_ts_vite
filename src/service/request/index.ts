@@ -1,7 +1,9 @@
 import MyRequest from "./request";
 
+console.log(import.meta.env);
 const request = new MyRequest({
-  url: "http://localhost:8080"
+  baseURL: "https://httpbin.org/get",
+  timeout: 2000
 });
 
 export default request;
