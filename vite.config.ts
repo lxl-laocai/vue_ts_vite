@@ -1,13 +1,18 @@
 import path from "path";
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
+import type { PreRenderedAsset } from "rollup";
+import viteCompression from "vite-plugin-compression";
+import vueJsx from "@vitejs/plugin-vue-jsx";
+
 import AutoImport from "unplugin-auto-import/vite";
 import Components from "unplugin-vue-components/vite";
 import { ElementPlusResolver } from "unplugin-vue-components/resolvers";
-import viteCompression from "vite-plugin-compression";
-import { PreRenderedAsset } from "rollup";
+import IconsResolver from "unplugin-icons/dist/resolver";
+import Icons from "unplugin-icons/dist/vite";
 // https://vitejs.dev/config/
 
+// @ts-ignore
 export default defineConfig({
   base: "./", // 公共基础路径
   server: {
@@ -18,7 +23,7 @@ export default defineConfig({
     https: false
   },
   build: {
-    outDir:"./build", // 设置打包文件夹名称
+    outDir: "./build", // 设置打包文件夹名称
     minify: "terser", // 指定混淆器  terser需要安装包
     terserOptions: { // 传递给 Terser 的选项
       compress: { // 打包删除 console debugger
@@ -35,24 +40,44 @@ export default defineConfig({
         chunkFileNames: "js/[name]-[hash]-[format].js",
         assetFileNames(chunkInfo: PreRenderedAsset): string {
           let suffix = chunkInfo.name.split(".").pop().toLowerCase();
-          if (["jpg","png","gif","jpeg","webp"].includes(suffix)){
+          if (["jpg", "png", "gif", "jpeg", "webp"].includes(suffix)) {
             return "img/[name]-[hash].[ext]";
           }
-            return "[ext]/[name]-[hash].[ext]";
+          return "[ext]/[name]-[hash].[ext]";
         }
       }
     }
   },
-  css:{
-    devSourcemap:true // css sourcemap
+  css: {
+    devSourcemap: true // css sourcemap
   },
   plugins: [
-    vue(),
+    vue(), // vue plugin 对 vue 支持
+    vueJsx(),// vueJsx plugin 对 jsx 支持
     AutoImport({
-      resolvers: [ElementPlusResolver()]
+      // 自动导入 Vue 相关函数
+      imports: ["vue"],
+      resolvers: [
+        // 自动导入element组件
+        ElementPlusResolver(),
+        // 自动导入图标组件
+        IconsResolver({
+          prefix: "Icon"
+        })
+      ]
     }),
     Components({
-      resolvers: [ElementPlusResolver()]
+      resolvers: [
+        // 自动注册element组件
+        ElementPlusResolver(),
+        // 自动注册图标组件
+        IconsResolver({
+          enabledCollections: ["ep"]
+        })
+      ]
+    }),
+    Icons({
+      autoInstall: true
     }),
     // 开启gzip压缩
     viteCompression({
@@ -63,6 +88,7 @@ export default defineConfig({
   resolve: {
     alias: [
       { find: "@", replacement: path.resolve(__dirname, "src") }
-    ]
+    ],
+    extensions: [".mjs", ".js", ".ts", ".jsx", ".tsx", ".json", ".vue"]
   }
 });

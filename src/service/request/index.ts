@@ -1,9 +1,8 @@
 import MyRequest from "./request";
 
-console.log(import.meta.env);
 const request = new MyRequest({
-  baseURL: "https://httpbin.org/get",
-  timeout: 2000
+  baseURL: import.meta.env.VITE_BASE_URL,
+  timeout: import.meta.env.VITE_TIMER_OUT
 });
 
 export default request;

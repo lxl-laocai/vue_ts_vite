@@ -1,5 +1,8 @@
-import type { AxiosInstance, AxiosResponse, AxiosRequestConfig } from "axios";
+import type { AxiosResponse, AxiosRequestConfig } from "axios";
 import type { LoadingInstance } from "element-plus/lib/components/loading/src/loading";
+export type { AxiosInstance } from "axios";
+
+export type TStatusMap = Map<string, (message?: string, config?: IAxiosConfig, request?: any) => void>
 
 export interface IAxiosInterceptors<T = AxiosResponse> {
   requestInterceptor?: (value: AxiosRequestConfig) => AxiosRequestConfig
@@ -25,6 +28,3 @@ export interface ILoadingInstance {
   _count: number
 }
 
-export {
-  AxiosInstance
-};

@@ -1,6 +1,6 @@
 import axios from "axios";
 import { ElLoading, ElMessage } from "element-plus";
-import type { AxiosInstance, IAxiosConfig, IAxiosInterceptors, ILoadingInstance } from "./bean";
+import type { AxiosInstance, IAxiosConfig, IAxiosInterceptors, ILoadingInstance, TStatusMap } from "./bean";
 import {
   DEFAULT_SHOW_LOADING,
   DEFAULT_REDUCE_DATA_FORMAT,
@@ -9,7 +9,7 @@ import {
   DEFAULT_SHOW_CODE_MESSAGE
 } from "./constant";
 
-const statusMap = new Map();
+const statusMap: TStatusMap = new Map();
 const LoadingInstance: ILoadingInstance = {
   _target: null,
   _count: 0
@@ -196,7 +196,7 @@ function delStatus(config: IAxiosConfig): void {
   const status = getStatus(config);
   if (statusMap.has(status)) {
     const cancelToken = statusMap.get(status);
-    cancelToken(status);
+    cancelToken!(status);
     statusMap.delete(status);
   }
 }
