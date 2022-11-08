@@ -4,15 +4,17 @@ import type { FormInstance } from "element-plus";
 
 export default defineComponent({
   setup() {
-    const formRef = ref<FormInstance>(null);
+    const formRef = ref<FormInstance>();
     const formData = reactive<{ username: string, password: number }>({
       username: "",
-      password: null
+      password: 0
     });
     onMounted(() => {
       console.log(formRef);
     });
+
     const rules = reactive({
+
       username: [{
         type: "string",
         required: true,
