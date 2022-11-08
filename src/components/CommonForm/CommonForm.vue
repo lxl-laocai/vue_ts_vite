@@ -1,7 +1,12 @@
 <script lang="tsx">
 export default {
-  name: "PublicForm",
-  setup(props,ctx) {
+  name: "CommonForm",
+  setup(props, ctx) {
+    const formData = reactive<{ username: string, password: number }>({
+      username: "",
+      password: 0
+    });
+    const rules = reactive({});
     return () => (
       <>
         <div class="header">

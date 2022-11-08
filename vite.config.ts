@@ -39,9 +39,12 @@ export default defineConfig({
         entryFileNames: "js/[name]-[hash]-[format].js",
         chunkFileNames: "js/[name]-[hash]-[format].js",
         assetFileNames(chunkInfo: PreRenderedAsset): string {
-          let suffix = chunkInfo.name.split(".").pop().toLowerCase();
+          const suffix = chunkInfo.name.split(".").pop().toLowerCase();
           if (["jpg", "png", "gif", "jpeg", "webp"].includes(suffix)) {
             return "img/[name]-[hash].[ext]";
+          }
+          if (["eot", "ttf", "svg", "woff", "woff2"].includes(suffix)) {
+            return "font/[name]-[hash].[ext]";
           }
           return "[ext]/[name]-[hash].[ext]";
         }
@@ -49,7 +52,12 @@ export default defineConfig({
     }
   },
   css: {
-    devSourcemap: true // css sourcemap
+    devSourcemap: true, // css sourcemap
+    preprocessorOptions: {
+      scss: {
+        additionalData: `@import "./src/assets/css/common.scss";`
+      }
+    }
   },
   plugins: [
     vue(), // vue plugin 对 vue 支持
