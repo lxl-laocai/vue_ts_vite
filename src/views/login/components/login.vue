@@ -1,6 +1,7 @@
 <script lang="tsx">
 import { defineComponent, ref } from "vue";
-import type { FormInstance } from 'element-plus'
+import type { FormInstance } from "element-plus";
+
 export default defineComponent({
   setup() {
     const formRef = ref<FormInstance>(null);
@@ -28,12 +29,12 @@ export default defineComponent({
         <div class="flex flex-col justify-center items-center">
           <el-image class="w-14 rounded-full" src={image.value} fit="fill" lazy={true} alt="logo"
                     placeholder="Mr. Liu" />
-          <h1 class="text-2xl font-semibold text-center text-slate-900 py-4 color">Vue TS Vite</h1>
+          <h1 class="text-2xl font-bold text-center text-slate-900 py-4 color">Vue TS Vite</h1>
           <el-form ref={formRef} rules={rules} label-width="50px" status-icon={true} hide-required-asterisk={true}
                    size="large">
             <el-form-item label="账号" prop="username" required={true}>
               <el-input v-model:value={formData.username} name="username" type="text" placeholder="用户名/手机号"
-                        prefix-icon="" />
+                        prefix-icon="user" />
             </el-form-item>
             <el-form-item label="密码" prop="password" required={true}>
               <el-input v-model:value={formData.password} name="password" type="password" placeholder="密码"
@@ -53,10 +54,5 @@ export default defineComponent({
 <style lang="scss" scoped>
 .color {
   color: $globalColor;
-}
-
-:deep(.el-input__wrapper) {
-  border: none;
-  border-bottom: 1px solid red;
 }
 </style>
