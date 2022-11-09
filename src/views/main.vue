@@ -1,10 +1,10 @@
 <template>
-index
+  main
 </template>
 
 <script>
 export default {
-  name: "index"
+  name: "main"
 };
 </script>
 

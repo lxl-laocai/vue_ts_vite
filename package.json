@@ -1,15 +1,23 @@
 {
-  "name": "test-vite",
+  "name": "vue_ts_vite",
   "private": true,
   "version": "0.0.1",
   "type": "module",
+  "description": "Vue3+Ts+Vite",
+  "author": "lxl",
+  "license": "MIT",
   "scripts": {
-    "dev": "vite --mode developoment",
-    "build": "vue-tsc && vite build --mode production",
+    "dev": "vite",
+    "build:prod": "vue-tsc && vite build",
     "preview": "vite preview",
     "prettier": "prettier --write ."
   },
+  "repository": {
+    "type": "git",
+    "url": "https://gitee.com/y_project/RuoYi-Vue.git"
+  },
   "dependencies": {
+    "@element-plus/icons-vue": "^2.0.10",
     "animate.css": "^4.1.1",
     "axios": "^1.1.3",
     "dayjs": "^1.11.6",

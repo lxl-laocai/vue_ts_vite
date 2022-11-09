@@ -1,22 +1,28 @@
-import { createRouter, createWebHashHistory } from "vue-router";
+import { createRouter, createWebHistory } from "vue-router";
 import type { RouteRecordRaw, Router } from "vue-router";
 
 const routes: RouteRecordRaw[] = [
   {
     path: "/",
-    component: () => import("@/views/index.vue")
+    redirect: "/main"
+  },
+  {
+    path: "/main",
+    name: "main",
+    component: () => import("@/views/main.vue")
   },
   {
     path: "/login",
+    name:"login",
     component: () => import("@/views/login")
   }
 ];
 const router: Router = createRouter({
   routes,
-  history: createWebHashHistory()
+  history: createWebHistory()
 });
-router.beforeEach((to,from) => {
+router.beforeEach((to, from) => {
   // console.log(to,from);
-  return true
-})
+  return true;
+});
 export default router;
