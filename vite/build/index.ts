@@ -1,5 +1,5 @@
-import { BuildOptions } from "vite";
 import path from "path";
+import { BuildOptions } from "vite";
 
 export default function createViteBuild(): BuildOptions {
   return {
@@ -15,8 +15,8 @@ export default function createViteBuild(): BuildOptions {
     sourcemap: true, // 生成 sourcemap 文件映射 定位错误查看源代码等
     rollupOptions: {
       input: {
-        index: path.resolve(__dirname, "index.html"),
-        ie: path.resolve(__dirname, "ie.html")
+        index: path.resolve(__dirname, "/index.html"),
+        ie: path.resolve(__dirname, "/ie.html")
       },
       output: {
         // dir:"build",
