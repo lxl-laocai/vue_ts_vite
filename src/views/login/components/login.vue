@@ -1,5 +1,5 @@
 <script lang="tsx">
-import { defineComponent, ref } from "vue";
+import { defineComponent, ref,reactive } from "vue";
 import { FormInstance, FormRules, IFormData } from "./bean";
 
 export default defineComponent({
@@ -7,7 +7,7 @@ export default defineComponent({
     const formRef = ref<FormInstance>();
     const formData: IFormData = reactive({
       username: "",
-      password: null,
+      password: "",
       remember: false
     });
     const rules = reactive<FormRules>({
