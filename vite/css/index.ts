@@ -7,7 +7,8 @@ export default function createViteCss(): CSSOptions {
     devSourcemap: true, // css sourcemap
     preprocessorOptions: {
       scss: {
-        additionalData: `@import "./src/assets/css/common.scss";`
+        additionalData: `@import "./src/assets/css/variables.module.scss";`,
+        javascriptEnabled: true
       }
     },
     postcss: {

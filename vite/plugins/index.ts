@@ -8,11 +8,11 @@ import AutoImport from "./AutoImports";
 import Components from "./Components";
 import Compression from "./Compression";
 
-export default function createVitePlugins(viteEnv, isBuild = false):PluginOption[] {
-  const plugins: any = [
+export default function createVitePlugins(viteEnv, isBuild = false): PluginOption[] {
+  const plugins: PluginOption[] = [
     vue(), // vue vite 对 vue 支持
     vueJsx(),// vueJsx vite 对 jsx 支持
-    VueSetupExtend(),// 定义组件的 name 值
+    VueSetupExtend()// 定义组件的 name 值
   ];
   plugins.push(Icons());
   plugins.push(AutoImport());

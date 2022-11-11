@@ -1,9 +1,8 @@
 <template>
   main
-  <h1 class="w-full"></h1>
 </template>
 
-<script lang="ts" name="main" setup>
+<script lang="ts" name="index" setup>
 
 </script>
 

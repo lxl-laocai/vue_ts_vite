@@ -1,8 +1,9 @@
 import MyRequest from "./request";
+import { BASE_URL, TIMER_OUT } from "@/model";
 
 const request = new MyRequest({
-  baseURL: import.meta.env.VITE_BASE_URL,
-  timeout: import.meta.env.VITE_TIMER_OUT
+  baseURL: BASE_URL,
+  timeout: Number(TIMER_OUT)
 });
 
 export default request;
