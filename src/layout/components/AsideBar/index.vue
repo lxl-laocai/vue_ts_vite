@@ -11,7 +11,7 @@
 
 <script name="AsideBar" lang="ts" setup>
 import SideLogo from "./SideLogo.vue";
-import MenuList from "./MenuList.vue";
+import MenuList from "./Menu.vue";
 </script>
 
 <style scoped lang="scss">

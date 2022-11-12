@@ -23,6 +23,7 @@
     "dayjs": "^1.11.6",
     "element-plus": "^2.2.20",
     "font-awesome": "^4.7.0",
+    "gdt-jsapi": "^1.9.39",
     "loadsh": "^0.0.4",
     "normalize.css": "^8.0.1",
     "nprogress": "^0.2.0",

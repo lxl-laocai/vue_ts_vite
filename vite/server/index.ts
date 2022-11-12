@@ -8,8 +8,8 @@ export default function createViteServer():ServerOptions {
     open: true,
     https: false,
     proxy: {
-      "/api": {
-        target: "http://localhost:3000",
+      "^/api": {
+        target: "http://152.136.185.210:5000",
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, "")
       }
