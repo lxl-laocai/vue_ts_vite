@@ -1,6 +1,6 @@
 import axios from "axios";
 import { ElLoading, ElMessage } from "element-plus";
-import type { AxiosInstance, IAxiosConfig, IAxiosInterceptors, ILoadingInstance, TStatusMap } from "./bean";
+import type { AxiosInstance, IAxiosConfig, IAxiosInterceptors, ILoadingInstance, TStatusMap,IRequest } from "./bean";
 import {
   DEFAULT_SHOW_LOADING,
   DEFAULT_REDUCE_DATA_FORMAT,
@@ -8,13 +8,15 @@ import {
   DEFAULT_SHOW_ERROR_MESSAGE,
   DEFAULT_SHOW_CODE_MESSAGE
 } from "./constant";
+import { getStorage } from "@/utils";
 
 const statusMap: TStatusMap = new Map();
 const LoadingInstance: ILoadingInstance = {
   _target: null,
   _count: 0
 };
-export default class MyRequest {
+
+export default class MyRequest implements IRequest{
   instance: AxiosInstance;
   interceptors?: IAxiosInterceptors;
   repeatRequestCancel: boolean;
@@ -34,11 +36,16 @@ export default class MyRequest {
     // 全局拦截器
     this.instance.interceptors.request.use(config => {
       this.repeatRequestCancel && addStatus(config);
+      // 创建loading实例
       if (this.showLoading) {
         LoadingInstance._count++;
         if (LoadingInstance._count === 1) {
           LoadingInstance._target = ElLoading.service({});
         }
+      }
+      // 自动携带token
+      if (getStorage("token") && typeof window !== "undefined") {
+          config.headers!.Authorization = getStorage("token");
       }
       return config;
     }, error => {

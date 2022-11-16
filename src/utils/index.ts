@@ -1,3 +1,3 @@
-export { default as registerIconComponent } from "../utils/registerIcon";
+export { default as registerIconComponent } from "./registerIcon";
 export * from "./storage";
 

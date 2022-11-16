@@ -1,6 +1,10 @@
 import type { AxiosResponse, AxiosRequestConfig } from "axios";
 import type { LoadingInstance } from "element-plus/lib/components/loading/src/loading";
-export type { AxiosInstance } from "axios";
+import type { AxiosInstance } from "axios";
+
+export {
+  AxiosInstance
+};
 
 export type TStatusMap = Map<string, (message?: string, config?: IAxiosConfig, request?: any) => void>
 
@@ -15,7 +19,7 @@ export interface IAxiosConfig<T = AxiosResponse> extends AxiosRequestConfig, IOt
   interceptors?: IAxiosInterceptors<T>
 }
 
-export interface IOtherOptions {
+interface IOtherOptions {
   repeatRequestCancel?: boolean
   reduceDataFormat?: boolean
   showErrorMessage?: boolean
@@ -26,5 +30,15 @@ export interface IOtherOptions {
 export interface ILoadingInstance {
   _target: LoadingInstance | null,
   _count: number
+}
+
+export interface IRequest {
+  instance: AxiosInstance;
+  interceptors?: IAxiosInterceptors;
+  repeatRequestCancel: boolean;
+  reduceDataFormat: boolean;
+  showLoading: boolean;
+  showErrorMessage: boolean;
+  showCodeMessage: boolean;
 }
 
