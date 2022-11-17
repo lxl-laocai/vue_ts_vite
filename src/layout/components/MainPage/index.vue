@@ -1,5 +1,5 @@
 <template>
-  <el-main  class="page">Main</el-main>
+  <el-main class="page">Main</el-main>
 </template>
 
 <script>
@@ -9,7 +9,7 @@ export default {
 </script>
 
 <style scoped>
-.page{
-  background-color:#00ffff;
+.page {
+  background-color: #00ffff;
 }
 </style>

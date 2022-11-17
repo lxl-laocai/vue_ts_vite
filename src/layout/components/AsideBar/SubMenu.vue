@@ -22,11 +22,9 @@
 
 <script name="SubMenu" lang="ts" setup>
 const props = defineProps<{
-  items:object
-}>()
+  items: object;
+}>();
 console.log(props.items);
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

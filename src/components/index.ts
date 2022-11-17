@@ -1,3 +1,3 @@
-const name: string = ""
+const name: string = "";
 
-export default name
+export default name;

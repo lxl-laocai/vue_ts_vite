@@ -11,5 +11,5 @@ export default function createComponents() {
         enabledCollections: ["ep"]
       })
     ]
-  })
+  });
 }

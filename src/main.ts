@@ -23,16 +23,18 @@ import request from "@/service";
 //     console.log(err);
 //   })
 // })
-request.post<any>({
-  url: "/login",
-  data:{
-    name: "coderwhy",
-    password: "123456"
-  }
-}).then(res=>{
-  console.log(1);
-  console.log(res.data.accessToken);
-})
+request
+  .post<any>({
+    url: "/login",
+    data: {
+      name: "coderwhy",
+      password: "123456"
+    }
+  })
+  .then((res) => {
+    console.log(1);
+    console.log(res.data.accessToken);
+  });
 
 const app = createApp(App);
 registerIconComponent(app);

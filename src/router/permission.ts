@@ -8,14 +8,13 @@ NProgress.configure({ showSpinner: false });
 const whiteList = ["/login"];
 
 router.beforeEach((to, from) => {
-  return true
+  return true;
   NProgress.start();
   if (getStorage("token")) {
-    if (to.path === '/login') {
-      NProgress.done()
-      return { path: '/' }
-    }else{
-
+    if (to.path === "/login") {
+      NProgress.done();
+      return { path: "/" };
+    } else {
     }
   } else {
     if (whiteList.indexOf(to.path) !== -1) {
@@ -23,7 +22,7 @@ router.beforeEach((to, from) => {
       return true;
     } else {
       NProgress.done();
-      return `/login?redirect=${to.fullPath}`;// 否则全部重定向到登录页
+      return `/login?redirect=${to.fullPath}`; // 否则全部重定向到登录页
     }
   }
 });

@@ -13,7 +13,7 @@ import { AsideBar, NavBar, MainPage } from "./components";
 </script>
 
 <style scoped lang="scss">
-.aside-container{
+.aside-container {
   position: fixed;
   top: 0;
   left: 0;
@@ -21,10 +21,10 @@ import { AsideBar, NavBar, MainPage } from "./components";
   right: 0;
   width: $globalAsideWidth;
   height: 100%;
-  transition: width .3s;
+  transition: width 0.3s;
   z-index: 999;
   overflow: hidden;
-  box-shadow: 2px 0 6px rgba(0,21,41,.35);
-  background-color:$globalAsideMenuDark;
+  box-shadow: 2px 0 6px rgba(0, 21, 41, 0.35);
+  background-color: $globalAsideMenuDark;
 }
 </style>

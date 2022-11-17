@@ -1,4 +1,4 @@
-import { STORAGE_TYPE,STORAGE_IS_EXPIRE } from "@/model";
+import { STORAGE_TYPE, STORAGE_IS_EXPIRE } from "@/model";
 
 const config = {
   type: STORAGE_TYPE, // 本地存储类型
@@ -17,7 +17,7 @@ export const setStorage = (key: string, value: unknown, expire: number = 0) => {
     value: value, // 存储值
     time: Date.now() //存值时间戳
   };
-  if (JSON.parse(STORAGE_IS_EXPIRE)) data["expire"] = (expire ? expire : config.expire) * 1000;// 过期时间
+  if (JSON.parse(STORAGE_IS_EXPIRE)) data["expire"] = (expire ? expire : config.expire) * 1000; // 过期时间
   window[config.type].setItem(autoAddPrefix(key), JSON.stringify(data));
 };
 // 获取 getStorage
@@ -38,18 +38,18 @@ export const getStorage = (k: string) => {
 // 是否存在 hasStorage
 export const hasStorage = (key) => {
   const k = autoAddPrefix(key);
-  const arr = getStorageAll().filter(item => item.key === k);
+  const arr = getStorageAll().filter((item) => item.key === k);
   return !!arr.length;
 };
 // 获取所有key
 export const getStorageKeys = () => {
-  return getStorageAll().map(item => {
+  return getStorageAll().map((item) => {
     return item.key;
   });
 };
 // 获取全部 getAllStorage
 export const getStorageAll = () => {
-  return Object.keys(window[config.type]).map(key => {
+  return Object.keys(window[config.type]).map((key) => {
     const val = window[config.type].getItem(key);
     return { key, val };
   });

@@ -10,7 +10,7 @@ export default defineStore("user", {
     }
   }),
   getters: {
-    userInfoGetter: state => state.userData.userInfo
+    userInfoGetter: (state) => state.userData.userInfo
   },
   actions: {
     registerUserAction(data: IRegister) {

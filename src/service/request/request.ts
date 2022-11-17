@@ -1,6 +1,6 @@
 import axios from "axios";
 import { ElLoading, ElMessage } from "element-plus";
-import type { AxiosInstance, IAxiosConfig, IAxiosInterceptors, ILoadingInstance, TStatusMap,IRequest } from "./bean";
+import type { AxiosInstance, IAxiosConfig, IAxiosInterceptors, ILoadingInstance, TStatusMap, IRequest } from "./bean";
 import {
   DEFAULT_SHOW_LOADING,
   DEFAULT_REDUCE_DATA_FORMAT,
@@ -16,7 +16,7 @@ const LoadingInstance: ILoadingInstance = {
   _count: 0
 };
 
-export default class MyRequest implements IRequest{
+export default class MyRequest implements IRequest {
   instance: AxiosInstance;
   interceptors?: IAxiosInterceptors;
   repeatRequestCancel: boolean;
@@ -30,54 +30,54 @@ export default class MyRequest implements IRequest{
     this.interceptors = config.interceptors; // 实例拦截器
     this.repeatRequestCancel = config.repeatRequestCancel ?? DEFAULT_REPEAT_REQUEST_CANCEL; // 是否开启取消重复请求
     this.reduceDataFormat = config.reduceDataFormat ?? DEFAULT_REDUCE_DATA_FORMAT; // 是否开启简洁的数据结构响应
-    this.showErrorMessage = config.showErrorMessage ?? DEFAULT_SHOW_ERROR_MESSAGE;// 是否开启接口错误信息展示
+    this.showErrorMessage = config.showErrorMessage ?? DEFAULT_SHOW_ERROR_MESSAGE; // 是否开启接口错误信息展示
     this.showCodeMessage = config.showCodeMessage ?? DEFAULT_SHOW_CODE_MESSAGE; // 是否开启code不为0时的信息提示
     this.showLoading = config.showLoading ?? DEFAULT_SHOW_LOADING; // 是否开启loading层效果
     // 全局拦截器
-    this.instance.interceptors.request.use(config => {
-      this.repeatRequestCancel && addStatus(config);
-      // 创建loading实例
-      if (this.showLoading) {
-        LoadingInstance._count++;
-        if (LoadingInstance._count === 1) {
-          LoadingInstance._target = ElLoading.service({});
-        }
-      }
-      // 自动携带token
-      if (getStorage("token") && typeof window !== "undefined") {
-          config.headers!.Authorization = getStorage("token");
-      }
-      return config;
-    }, error => {
-      return Promise.reject(error);
-    });
-
-    this.instance.interceptors.response.use(response => {
-      delStatus(response.config);
-      this.showLoading && closeLoading(this.showLoading);
-
-      // code不等于0, 页面具体逻辑就不执行了
-      if (this.showCodeMessage && response.data && response.data.code !== 0) {
-        ElMessage({ type: "error", message: response.data.message });
-        return Promise.reject(response.data);
-      }
-
-      return this.reduceDataFormat ? response.data : response;
-    }, error => {
-      error.config && delStatus(error.config);
-      this.showLoading && closeLoading(this.showLoading); // 关闭loading
-      this.showErrorMessage && httpErrorStatusHandle(error); // 处理错误状态码
-      return Promise.reject(error); // 错误继续返回给到具体页面
-    });
-    // 自定义实例拦截器
     this.instance.interceptors.request.use(
-      this.interceptors?.requestInterceptor,
-      this.interceptors?.requestInterceptorCatch
+      (config) => {
+        this.repeatRequestCancel && addStatus(config);
+        // 创建loading实例
+        if (this.showLoading) {
+          LoadingInstance._count++;
+          if (LoadingInstance._count === 1) {
+            LoadingInstance._target = ElLoading.service({});
+          }
+        }
+        // 自动携带token
+        if (getStorage("token") && typeof window !== "undefined") {
+          config.headers!.Authorization = getStorage("token");
+        }
+        return config;
+      },
+      (error) => {
+        return Promise.reject(error);
+      }
     );
+
     this.instance.interceptors.response.use(
-      this.interceptors?.responseInterceptor,
-      this.interceptors?.responseInterceptorCatch
+      (response) => {
+        delStatus(response.config);
+        this.showLoading && closeLoading(this.showLoading);
+
+        // code不等于0, 页面具体逻辑就不执行了
+        if (this.showCodeMessage && response.data && response.data.code !== 0) {
+          ElMessage({ type: "error", message: response.data.message });
+          return Promise.reject(response.data);
+        }
+
+        return this.reduceDataFormat ? response.data : response;
+      },
+      (error) => {
+        error.config && delStatus(error.config);
+        this.showLoading && closeLoading(this.showLoading); // 关闭loading
+        this.showErrorMessage && httpErrorStatusHandle(error); // 处理错误状态码
+        return Promise.reject(error); // 错误继续返回给到具体页面
+      }
     );
+    // 自定义实例拦截器
+    this.instance.interceptors.request.use(this.interceptors?.requestInterceptor, this.interceptors?.requestInterceptorCatch);
+    this.instance.interceptors.response.use(this.interceptors?.responseInterceptor, this.interceptors?.responseInterceptorCatch);
   }
 
   request<T>(config: IAxiosConfig<T>): Promise<T> {
@@ -88,14 +88,14 @@ export default class MyRequest implements IRequest{
       }
       this.instance
         .request<any, T>(config)
-        .then(res => {
+        .then((res) => {
           // api 接口响应拦截器
           if (config.interceptors?.responseInterceptor) {
             res = config.interceptors.responseInterceptor(res);
           }
           resolve(res);
         })
-        .catch(error => {
+        .catch((error) => {
           reject(error);
         });
     });
@@ -188,11 +188,13 @@ function closeLoading(_options) {
 function addStatus(config: IAxiosConfig): void {
   delStatus(config);
   const status = getStatus(config);
-  config.cancelToken = config.cancelToken || new axios.CancelToken(cancel => {
-    if (!statusMap.has(status)) {
-      statusMap.set(status, cancel);
-    }
-  });
+  config.cancelToken =
+    config.cancelToken ||
+    new axios.CancelToken((cancel) => {
+      if (!statusMap.has(status)) {
+        statusMap.set(status, cancel);
+      }
+    });
 }
 
 /**

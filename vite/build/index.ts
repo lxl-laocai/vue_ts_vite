@@ -5,8 +5,10 @@ export default function createViteBuild(): BuildOptions {
   return {
     outDir: "./build", // 设置打包文件夹名称
     minify: "terser", // 指定混淆器  terser需要安装包
-    terserOptions: { // 传递给 Terser 的选项
-      compress: { // 打包删除 console debugger
+    terserOptions: {
+      // 传递给 Terser 的选项
+      compress: {
+        // 打包删除 console debugger
         drop_console: false,
         drop_debugger: true
       }

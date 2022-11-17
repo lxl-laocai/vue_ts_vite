@@ -20,37 +20,22 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     // TS需要引用的库
-    "lib": [
-      "ESNext",
-      "DOM",
-      "WebWorker"
-    ],
+    "lib": ["ESNext", "DOM", "WebWorker"],
     "skipLibCheck": true,
     "noEmit": true,
     "baseUrl": ".",
     // 配置路径 与别名搭配
     "paths": {
-      "@/*": [
-        "src/*"
-      ]
+      "@/*": ["src/*"]
     },
     "noImplicitAny": false,
     // 不允许隐式 Any 类型
     "suppressImplicitAnyIndexErrors": true
   },
   // 那些文件需要ts
-  "include": [
-    "src/*",
-    "src/**/*.ts",
-    "src/**/*.d.ts",
-    "src/**/*.tsx",
-    "src/**/*.vue",
-    "auto-imports.d.ts"
-  ],
+  "include": ["src/*", "src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "auto-imports.d.ts"],
   // 排除node_modules
-  "exclude": [
-    "node_modules"
-  ],
+  "exclude": ["node_modules"],
   "references": [
     {
       "path": "./tsconfig.node.json"

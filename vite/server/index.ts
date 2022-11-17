@@ -1,6 +1,6 @@
 import { ServerOptions } from "vite";
 
-export default function createViteServer():ServerOptions {
+export default function createViteServer(): ServerOptions {
   return {
     host: "0.0.0.0",
     port: 3000,

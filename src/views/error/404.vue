@@ -2,24 +2,16 @@
   <div class="container">
     <div class="http404">
       <div class="pic-404">
-        <img class="pic-404__parent" :src="image404" alt="404">
-        <img class="pic-404__child left" :src="image404Cloud" alt="404">
-        <img class="pic-404__child mid" :src="image404Cloud" alt="404">
-        <img class="pic-404__child right" :src="image404Cloud" alt="404">
+        <img class="pic-404__parent" :src="image404" alt="404" />
+        <img class="pic-404__child left" :src="image404Cloud" alt="404" />
+        <img class="pic-404__child mid" :src="image404Cloud" alt="404" />
+        <img class="pic-404__child right" :src="image404Cloud" alt="404" />
       </div>
       <div class="bullshit">
-        <div class="bullshit__oops">
-          404错误!
-        </div>
-        <div class="bullshit__headline">
-          "找不到网页！"
-        </div>
-        <div class="bullshit__info">
-          对不起，您正在寻找的页面不存在。尝试检查URL的错误，然后按浏览器上的刷新按钮或尝试在我们的应用程序中找到其他内容。
-        </div>
-        <router-link to="/" class="bullshit__return-home">
-          返回首页
-        </router-link>
+        <div class="bullshit__oops">404错误!</div>
+        <div class="bullshit__headline">"找不到网页！"</div>
+        <div class="bullshit__info">对不起，您正在寻找的页面不存在。尝试检查URL的错误，然后按浏览器上的刷新按钮或尝试在我们的应用程序中找到其他内容。</div>
+        <router-link to="/" class="bullshit__return-home"> 返回首页 </router-link>
       </div>
     </div>
   </div>
@@ -62,7 +54,7 @@ const image404Cloud = computed(() => new URL("@/assets/images/error/404_cloud.pn
         top: 17px;
         left: 220px;
         opacity: 0;
-        animation:cloudLeft 2s linear forwards 1s;
+        animation: cloudLeft 2s linear forwards 1s;
       }
 
       &.mid {
@@ -78,7 +70,7 @@ const image404Cloud = computed(() => new URL("@/assets/images/error/404_cloud.pn
         top: 100px;
         left: 500px;
         opacity: 0;
-        animation:cloudRight 2s linear 1s forwards;
+        animation: cloudRight 2s linear 1s forwards;
       }
     }
   }
@@ -97,7 +89,7 @@ const image404Cloud = computed(() => new URL("@/assets/images/error/404_cloud.pn
       color: #1482f0;
       opacity: 0;
       margin-bottom: 20px;
-      animation: slideUp .5s forwards;
+      animation: slideUp 0.5s forwards;
     }
 
     &__headline {
@@ -107,7 +99,7 @@ const image404Cloud = computed(() => new URL("@/assets/images/error/404_cloud.pn
       font-weight: bold;
       opacity: 0;
       margin-bottom: 10px;
-      animation: slideUp .5s forwards .1s;
+      animation: slideUp 0.5s forwards 0.1s;
     }
 
     &__info {
@@ -116,7 +108,7 @@ const image404Cloud = computed(() => new URL("@/assets/images/error/404_cloud.pn
       color: grey;
       opacity: 0;
       margin-bottom: 30px;
-      animation: slideUp .5s forwards .2s;
+      animation: slideUp 0.5s forwards 0.2s;
     }
 
     &__return-home {
@@ -132,7 +124,7 @@ const image404Cloud = computed(() => new URL("@/assets/images/error/404_cloud.pn
       font-size: 14px;
       line-height: 36px;
       cursor: pointer;
-      animation: slideUp .5s forwards .3s;
+      animation: slideUp 0.5s forwards 0.3s;
     }
   }
 }

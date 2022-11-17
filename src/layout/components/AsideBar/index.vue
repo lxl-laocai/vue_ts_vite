@@ -14,6 +14,4 @@ import SideLogo from "./SideLogo.vue";
 import MenuList from "./Menu.vue";
 </script>
 
-<style scoped lang="scss">
-
-</style>
+<style scoped lang="scss"></style>

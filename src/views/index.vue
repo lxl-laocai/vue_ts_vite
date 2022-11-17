@@ -1,11 +1,5 @@
-<template>
-  main
-</template>
+<template>main</template>
 
-<script lang="ts" name="index" setup>
+<script lang="ts" name="index" setup></script>
 
-</script>
-
-<style scoped>
-
-</style>
+<style scoped></style>
