@@ -6,7 +6,8 @@ import {
   DEFAULT_REDUCE_DATA_FORMAT,
   DEFAULT_REPEAT_REQUEST_CANCEL,
   DEFAULT_SHOW_ERROR_MESSAGE,
-  DEFAULT_SHOW_CODE_MESSAGE
+  DEFAULT_SHOW_CODE_MESSAGE,
+  DEFAULT_HEADER_AUTHORIZATION
 } from "./constant";
 import { getStorage } from "@/utils";
 
@@ -46,7 +47,7 @@ export default class MyRequest implements IRequest {
         }
         // 自动携带token
         if (getStorage("token") && typeof window !== "undefined") {
-          config.headers!.Authorization = getStorage("token");
+          config.headers![DEFAULT_HEADER_AUTHORIZATION] = getStorage("token");
         }
         return config;
       },
@@ -171,10 +172,10 @@ function httpErrorStatusHandle(error) {
 
 /**
  * 关闭Loading层实例
- * @param {*} _options
+ * @param {*} showLoading
  */
-function closeLoading(_options) {
-  if (_options && LoadingInstance._count > 0) LoadingInstance._count--;
+function closeLoading(showLoading) {
+  if (showLoading && LoadingInstance._count > 0) LoadingInstance._count--;
   if (LoadingInstance._count === 0) {
     LoadingInstance._target!.close();
     LoadingInstance._target = null;
