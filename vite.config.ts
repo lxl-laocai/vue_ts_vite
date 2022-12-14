@@ -7,7 +7,6 @@ import { ViteServer, ViteBuild, ViteCss, VitePlugin } from "./vite";
 export default defineConfig(({ mode, command }) => {
   const env = loadEnv(mode, process.cwd());
   const { VITE_APP_ENV } = env;
-  console.log(VitePlugin(env, command === "build"));
   return {
     base: VITE_APP_ENV === "production" ? "/" : "/", // 设置为根路径
     resolve: {

@@ -32,8 +32,7 @@ request
     }
   })
   .then((res) => {
-    console.log(1);
-    console.log(res.data.accessToken);
+    console.log(res.data);
   });
 
 const app = createApp(App);

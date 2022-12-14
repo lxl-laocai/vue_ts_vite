@@ -48,12 +48,11 @@ const image404Cloud = computed(() => new URL("@/assets/images/error/404_cloud.pn
 
     &__child {
       position: absolute;
-
+      opacity: 0;
       &.left {
         width: 80px;
         top: 17px;
         left: 220px;
-        opacity: 0;
         animation: cloudLeft 2s linear forwards 1s;
       }
 
@@ -61,7 +60,6 @@ const image404Cloud = computed(() => new URL("@/assets/images/error/404_cloud.pn
         width: 46px;
         top: 10px;
         left: 420px;
-        opacity: 0;
         animation: cloudMid 2s linear forwards 1.2s;
       }
 
@@ -69,7 +67,6 @@ const image404Cloud = computed(() => new URL("@/assets/images/error/404_cloud.pn
         width: 62px;
         top: 100px;
         left: 500px;
-        opacity: 0;
         animation: cloudRight 2s linear 1s forwards;
       }
     }

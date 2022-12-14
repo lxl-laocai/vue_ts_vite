@@ -18,8 +18,8 @@ const defaultRoutes: RouteRecordRaw[] = [
     ]
   },
   {
-    name: "login",
-    path: "/Login",
+    name: "Login",
+    path: "/login",
     component: () => import("@/views/login"),
     meta: {
       hidden: true,
@@ -48,6 +48,7 @@ const defaultRoutes: RouteRecordRaw[] = [
 const router: Router = createRouter({
   routes: defaultRoutes,
   history: createWebHistory(),
+  strict:true,
   scrollBehavior(to, from, savedPosition) {
     if (savedPosition) {
       return savedPosition;

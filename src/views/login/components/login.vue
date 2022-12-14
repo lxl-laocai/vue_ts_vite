@@ -13,11 +13,11 @@ export default defineComponent({
     const rules = reactive<FormRules>({
       username: [
         { required: true, message: "请输入用户名/手机号", trigger: "blur", transform: (value) => value.trim() },
-        { pattern: /^[a-zA-Z0-9]${5,10}/, message: "用户名必须是5-10个字母数字", trigger: "blur" }
+        // { pattern: /^[a-zA-Z0-9]${5,10}/, message: "用户名必须是5-10个字母数字", trigger: "blur" }
       ],
       password: [
         { required: true, trigger: "blur", message: "请输入密码" },
-        { pattern: /^[a-zA-Z0-9]${3,}/, message: "密码必须最少3个字母数字", trigger: "blur" }
+        // { pattern: /^[a-zA-Z0-9]${3,}/, message: "密码必须最少3个字母数字", trigger: "blur" }
       ]
     });
     const image = computed(() => new URL("@/assets/icons/login.svg", import.meta.url).href);

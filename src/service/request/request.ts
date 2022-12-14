@@ -221,3 +221,4 @@ function getStatus(config: IAxiosConfig): string {
   if (typeof data === "string") data = JSON.parse(data); // response里面返回的config.data是个字符串对象
   return encodeURI([url, method, JSON.stringify(params), JSON.stringify(data)].join("&"));
 }
+
